@@ -97,4 +97,12 @@ describe('Entity adapter', () => {
 		expect(entityAdapter.ids[1]).toBe(nextElements[1].id);
 		expect(entityAdapter.entities[elements[0].id]).not.toBe(elements[0]);
 	});
+
+	it('should get one element', () => {
+		const element = { id: '1', label: 'first' };
+
+		entityAdapter.addOne(element);
+
+		expect(entityAdapter.getOne(element.id)).toEqual(element);
+	});
 });

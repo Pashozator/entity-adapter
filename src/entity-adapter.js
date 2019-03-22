@@ -3,6 +3,10 @@ export class EntityAdapter {
 		this.ids = [];
 		this.entities = {};
 	}
+	
+	getOne(id) {
+		return this.entities[id];
+	}
 
 	addOne(element) {
 		this.ids.push(element.id);
