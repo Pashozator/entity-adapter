@@ -4,6 +4,7 @@
   "description": "Package to maintain entities",
   "private": true,
   "scripts": {
+    "start": "yarn build && node dist/bundle.js",
     "build": "webpack --config webpack.config.js",
     "test": "jest --watch"
   },
