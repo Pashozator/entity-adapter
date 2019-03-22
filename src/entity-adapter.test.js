@@ -18,6 +18,6 @@ describe('Entity adapter', () => {
 
         expect(entityAdapter.ids.length).toBe(1);
         expect(entityAdapter.ids[0]).toBe(element.id);
-        expect(entityAdapter.entities[element.id]).toBe(element);
+        expect(entityAdapter.entities[element.id]).toEqual(element);
     });
 });
