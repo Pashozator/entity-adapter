@@ -21,6 +21,11 @@ export class EntityAdapter {
         this.ids = this.ids.filter(_id => _id !== id);
     }
 
+    removeAll() {
+        this.ids = [];
+        this.entities = {};
+    }
+
     updateOne(id, changes) {
         for (const prop in this.entities[id]) {
             if (this.entities[id].hasOwnProperty(prop) && changes.hasOwnProperty(prop)) {

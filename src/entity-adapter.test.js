@@ -55,4 +55,17 @@ describe('Entity adapter', () => {
         expect(entityAdapter.entities[elements[0].id]).toEqual(elements[0]);
         expect(entityAdapter.entities[elements[1].id]).toEqual(elements[1]);
     });
+
+    it('should remove all elements', () => {
+        const elements = [
+            { id: '1', label: 'first' },
+            { id: '2', label: 'two' }
+        ];
+
+        entityAdapter.addAll(elements);
+        entityAdapter.removeAll();
+
+        expect(entityAdapter.ids.length).toBe(0);
+        expect(entityAdapter.entities).toEqual({});
+    });
 });
