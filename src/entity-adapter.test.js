@@ -7,7 +7,7 @@ describe('Entity adapter', () => {
         expect(entityAdapter).toBeTruthy();
     });
 
-    it('should add new element to entity adapter', () => {
+    it('should add element', () => {
         const entityAdapter = new EntityAdapter();
         const element = { id: '1', label: 'first' };
 
@@ -16,5 +16,5 @@ describe('Entity adapter', () => {
         expect(entityAdapter.ids.length).toBe(1);
         expect(entityAdapter.ids[0]).toBe(element.id);
         expect(entityAdapter.entities[element.id]).toBe(element);
-    })
+    });
 });
