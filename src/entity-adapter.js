@@ -1,41 +1,41 @@
 export class EntityAdapter {
-    constructor() {
-        this.ids = [];
-        this.entities = {};
-    }
+	constructor() {
+		this.ids = [];
+		this.entities = {};
+	}
 
-    addOne(element) {
-        this.ids.push(element.id);
-        this.entities[element.id] = element;
-    }
+	addOne(element) {
+		this.ids.push(element.id);
+		this.entities[element.id] = element;
+	}
 
-    addAll(elements) {
-        for (const element of elements) {
-            this.addOne(element);
-        }
-    }
+	addAll(elements) {
+		for (const element of elements) {
+			this.addOne(element);
+		}
+	}
 
-    removeOne(id) {
-        delete this.entities[id];
+	removeOne(id) {
+		delete this.entities[id];
 
-        this.ids = this.ids.filter(_id => _id !== id);
-    }
+		this.ids = this.ids.filter(_id => _id !== id);
+	}
 
-    removeAll() {
-        this.ids = [];
-        this.entities = {};
-    }
+	removeAll() {
+		this.ids = [];
+		this.entities = {};
+	}
 
-    updateOne(id, changes) {
-        for (const prop in this.entities[id]) {
-            if (this.entities[id].hasOwnProperty(prop) && changes.hasOwnProperty(prop)) {
-                this.entities[id][prop] = changes[prop];
-            }
-        }
-    }
+	updateOne(id, changes) {
+		for (const prop in this.entities[id]) {
+			if (this.entities[id].hasOwnProperty(prop) && changes.hasOwnProperty(prop)) {
+				this.entities[id][prop] = changes[prop];
+			}
+		}
+	}
 
-    replaceAll(elements) {
-        this.removeAll();
-        this.addAll(elements);
-    }
+	replaceAll(elements) {
+		this.removeAll();
+		this.addAll(elements);
+	}
 }
