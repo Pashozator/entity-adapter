@@ -29,5 +29,15 @@ describe('Entity adapter', () => {
 
         expect(entityAdapter.ids.length).toBe(0);
         expect(entityAdapter.entities).toEqual({});
-    })
+    });
+
+    it('should update element', () => {
+        const element = { id: '1', label: 'first', description: 'lorem ipsum' };
+        const changes = { label: 'two' };
+
+        entityAdapter.addOne(element);
+        entityAdapter.updateOne(element.id, changes);
+
+        expect(entityAdapter.entities[element.id].label).toEqual(changes.label);
+    });
 });
