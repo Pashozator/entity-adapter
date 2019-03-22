@@ -78,4 +78,23 @@ describe('Entity adapter', () => {
         expect(entityAdapter.ids.length).toBe(0);
         expect(entityAdapter.entities).toEqual({});
     });
+
+    it('should replace all elements', () => {
+        const elements = [
+            { id: '1', label: 'first' },
+            { id: '2', label: 'two' }
+        ];
+
+        const nextElements = [
+            { id: '1', label: 'next first' },
+            { id: '3', label: 'next two' },
+        ];
+
+        entityAdapter.addAll(elements);
+        entityAdapter.replaceAll(nextElements);
+
+        expect(entityAdapter.ids.length).toBe(2);
+        expect(entityAdapter.ids[1]).toBe(nextElements[1].id);
+        expect(entityAdapter.entities[elements[0].id]).not.toBe(elements[0]);
+    })
 });

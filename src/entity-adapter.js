@@ -33,4 +33,9 @@ export class EntityAdapter {
             }
         }
     }
+
+    replaceAll(elements) {
+        this.removeAll();
+        this.addAll(elements);
+    }
 }
