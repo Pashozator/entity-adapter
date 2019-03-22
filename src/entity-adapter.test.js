@@ -105,4 +105,15 @@ describe('Entity adapter', () => {
 
 		expect(entityAdapter.getOne(element.id)).toEqual(element);
 	});
+
+	it('should get all elements', () => {
+		const elements = [
+			{ id: '1', label: 'first' },
+			{ id: '2', label: 'two' }
+		];
+
+		entityAdapter.addAll(elements);
+
+		expect(entityAdapter.getAll()).toEqual(elements);
+	});
 });

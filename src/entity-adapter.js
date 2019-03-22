@@ -3,9 +3,13 @@ export class EntityAdapter {
 		this.ids = [];
 		this.entities = {};
 	}
-	
+
 	getOne(id) {
 		return this.entities[id];
+	}
+
+	getAll() {
+		return Object.keys(this.entities).map(key => this.entities[key]);
 	}
 
 	addOne(element) {
