@@ -1,14 +1,17 @@
 import {EntityAdapter} from "./entity-adapter";
 
 describe('Entity adapter', () => {
-    it('should create new entity adapter', () => {
-        const entityAdapter = new EntityAdapter();
+    let entityAdapter;
 
+    beforeEach(() => {
+        entityAdapter = new EntityAdapter();
+    });
+
+    it('should create new entity adapter', () => {
         expect(entityAdapter).toBeTruthy();
     });
 
     it('should add element', () => {
-        const entityAdapter = new EntityAdapter();
         const element = { id: '1', label: 'first' };
 
         entityAdapter.addOne(element);
