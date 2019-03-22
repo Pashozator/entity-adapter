@@ -9,6 +9,12 @@ export class EntityAdapter {
         this.entities[element.id] = element;
     }
 
+    addAll(elements) {
+        for (const element of elements) {
+            this.addOne(element);
+        }
+    }
+
     removeOne(id) {
         delete this.entities[id];
 

@@ -40,4 +40,19 @@ describe('Entity adapter', () => {
 
         expect(entityAdapter.entities[element.id].label).toEqual(changes.label);
     });
+
+    it('should add all elements', () => {
+        const elements = [
+            { id: '1', label: 'first' },
+            { id: '2', label: 'two' }
+        ];
+
+        entityAdapter.addAll(elements);
+
+        expect(entityAdapter.ids.length).toBe(2);
+        expect(entityAdapter.ids[0]).toBe(elements[0].id);
+        expect(entityAdapter.ids[1]).toBe(elements[1].id);
+        expect(entityAdapter.entities[elements[0].id]).toEqual(elements[0]);
+        expect(entityAdapter.entities[elements[1].id]).toEqual(elements[1]);
+    });
 });
