@@ -2,7 +2,7 @@
   "name": "entity-adapter",
   "version": "1.0.0",
   "description": "Package to maintain entities",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "yarn build && node dist/bundle.js",
     "build": "webpack --config webpack.config.js",
