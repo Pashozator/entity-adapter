@@ -1,4 +1,4 @@
-import { EntityAdapter } from './entity-adapter';
+import { EntityAdapter } from './index';
 
 describe('Entity adapter', () => {
 	let entityAdapter;
