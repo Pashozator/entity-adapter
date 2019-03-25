@@ -11,46 +11,46 @@ export class EntityAdapter {
 		}
 	}
 
-	getOne(id) {
-		return this.entities[id];
+	getOne(id, state) {
+		return state.entities[id];
 	}
 
-	getAll() {
-		return Object.keys(this.entities).map(key => this.entities[key]);
+	getAll(state) {
+		return Object.keys(state.entities).map(key => state.entities[key]);
 	}
 
-	addOne(element) {
-		this.ids.push(element.id);
-		this.entities[element.id] = element;
+	addOne(element, state) {
+		state.ids.push(element.id);
+		state.entities[element.id] = element;
 	}
 
-	addAll(elements) {
+	addAll(elements, state) {
 		for (const element of elements) {
-			this.addOne(element);
+			this.addOne(element, state);
 		}
 	}
 
-	removeOne(id) {
-		delete this.entities[id];
+	removeOne(id, state) {
+		delete state.entities[id];
 
-		this.ids = this.ids.filter(_id => _id !== id);
+		state.ids = state.ids.filter(_id => _id !== id);
 	}
 
-	removeAll() {
-		this.ids = [];
-		this.entities = {};
+	removeAll(state) {
+		state.ids = [];
+		state.entities = {};
 	}
 
-	updateOne(id, changes) {
-		for (const prop in this.entities[id]) {
-			if (this.entities[id].hasOwnProperty(prop) && changes.hasOwnProperty(prop)) {
-				this.entities[id][prop] = changes[prop];
+	updateOne(element, state) {
+		for (const prop in state.entities[element.id]) {
+			if (state.entities[element.id].hasOwnProperty(prop) && element.changes.hasOwnProperty(prop)) {
+				state.entities[element.id][prop] = element.changes[prop];
 			}
 		}
 	}
 
-	replaceAll(elements) {
-		this.removeAll();
-		this.addAll(elements);
+	replaceAll(elements, state) {
+		this.removeAll(state);
+		this.addAll(elements, state);
 	}
 }
