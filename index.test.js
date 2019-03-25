@@ -7,6 +7,10 @@ describe('Entity adapter', () => {
 		entityAdapter = new EntityAdapter();
 	});
 
+	it('should return initial state', () => {
+		expect(entityAdapter.getInitialState()).toEqual({ ids: [], entities: {} });
+	});
+
 	it('should create new entity adapter', () => {
 		expect(entityAdapter).toBeTruthy();
 	});

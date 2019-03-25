@@ -4,6 +4,13 @@ export class EntityAdapter {
 		this.entities = {};
 	}
 
+	getInitialState() {
+		return {
+			ids: this.ids,
+			entities: this.entities
+		}
+	}
+
 	getOne(id) {
 		return this.entities[id];
 	}
