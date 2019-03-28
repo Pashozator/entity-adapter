@@ -22,9 +22,9 @@ describe('Entity adapter', () => {
 
 		const newState = entityAdapter.addOne(element, state);
 
-		expect(state.ids.length).toBe(1);
-		expect(state.ids[0]).toBe(element.id);
-		expect(state.entities[element.id]).toEqual(element);
+		expect(newState.ids.length).toBe(1);
+		expect(newState.ids[0]).toBe(element.id);
+		expect(newState.entities[element.id]).toEqual(element);
 		expect(state).not.toBe(newState);
 	});
 
@@ -34,8 +34,8 @@ describe('Entity adapter', () => {
 		let newState = entityAdapter.addOne(element, state);
 		newState = entityAdapter.removeOne(element.id, state);
 
-		expect(state.ids.length).toBe(0);
-		expect(state.entities).toEqual({});
+		expect(newState.ids.length).toBe(0);
+		expect(newState.entities).toEqual({});
 		expect(state).not.toBe(newState);
 	});
 
@@ -44,9 +44,9 @@ describe('Entity adapter', () => {
 		const changes = { label: 'two' };
 
 		let newState = entityAdapter.addOne(element, state);
-		newState = entityAdapter.updateOne({ id: element.id, changes}, state);
+		newState = entityAdapter.updateOne({ id: element.id, changes: changes }, newState);
 
-		expect(state.entities[element.id].label).toEqual(changes.label);
+		expect(newState.entities[element.id].label).toEqual(changes.label);
 		expect(state).not.toBe(newState);
 	});
 
@@ -58,22 +58,22 @@ describe('Entity adapter', () => {
 
 		let newState = entityAdapter.addAll(elements, state);
 
-		expect(state.ids.length).toBe(2);
-		expect(state.ids[0]).toBe(elements[0].id);
-		expect(state.ids[1]).toBe(elements[1].id);
-		expect(state.entities[elements[0].id]).toEqual(elements[0]);
-		expect(state.entities[elements[1].id]).toEqual(elements[1]);
+		expect(newState.ids.length).toBe(2);
+		expect(newState.ids[0]).toBe(elements[0].id);
+		expect(newState.ids[1]).toBe(elements[1].id);
+		expect(newState.entities[elements[0].id]).toEqual(elements[0]);
+		expect(newState.entities[elements[1].id]).toEqual(elements[1]);
 		expect(state).not.toBe(newState);
 
 		elements = [
 			{ id: '3', label: 'third' }
 		];
 
-		newState = entityAdapter.addAll(elements, state);
+		newState = entityAdapter.addAll(elements, newState);
 
-		expect(state.ids.length).toBe(3);
-		expect(state.ids[2]).toBe(elements[0].id);
-		expect(state.entities[elements[0].id]).toEqual(elements[0]);
+		expect(newState.ids.length).toBe(3);
+		expect(newState.ids[2]).toBe(elements[0].id);
+		expect(newState.entities[elements[0].id]).toEqual(elements[0]);
 		expect(state).not.toBe(newState);
 	});
 
@@ -86,8 +86,8 @@ describe('Entity adapter', () => {
 		let newState = entityAdapter.addAll(elements, state);
 		newState = entityAdapter.removeAll(state);
 
-		expect(state.ids.length).toBe(0);
-		expect(state.entities).toEqual({});
+		expect(newState.ids.length).toBe(0);
+		expect(newState.entities).toEqual({});
 		expect(state).not.toBe(newState);
 	});
 
@@ -105,9 +105,9 @@ describe('Entity adapter', () => {
 		let newState = entityAdapter.addAll(elements, state);
 		newState = entityAdapter.replaceAll(nextElements, state);
 
-		expect(state.ids.length).toBe(2);
-		expect(state.ids[1]).toBe(nextElements[1].id);
-		expect(state.entities[elements[0].id]).not.toBe(elements[0]);
+		expect(newState.ids.length).toBe(2);
+		expect(newState.ids[1]).toBe(nextElements[1].id);
+		expect(newState.entities[elements[0].id]).not.toBe(elements[0]);
 		expect(state).not.toBe(newState);
 	});
 
@@ -116,7 +116,7 @@ describe('Entity adapter', () => {
 
 		let newState = entityAdapter.addOne(element, state);
 
-		expect(entityAdapter.getOne(element.id, state)).toEqual(element);
+		expect(entityAdapter.getOne(element.id, newState)).toEqual(element);
 		expect(state).not.toBe(newState);
 	});
 
@@ -128,7 +128,7 @@ describe('Entity adapter', () => {
 
 		let newState = entityAdapter.addAll(elements, state);
 
-		expect(entityAdapter.getAll(state)).toEqual(elements);
+		expect(entityAdapter.getAll(newState)).toEqual(elements);
 		expect(state).not.toBe(newState);
 	});
 });
