@@ -1,3 +1,5 @@
+import { cloneDeep } from 'lodash';
+
 export class EntityAdapter {
 	constructor() {
 		this.ids = [];
@@ -20,49 +22,61 @@ export class EntityAdapter {
 	}
 
 	addOne(element, state) {
-		state.ids.push(element.id);
-		state.entities[element.id] = element;
+		const newState = cloneDeep(state);
 
-		return { ...state }
+		newState.ids.push(element.id);
+		newState.entities[element.id] = element;
+
+		return newState;
 	}
 
 	addAll(elements, state) {
+		let newState = cloneDeep(state);
+
 		for (const element of elements) {
-			this.addOne(element, state);
+			newState = this.addOne(element, newState);
 		}
 
-		return { ...state }
+		return newState;
 	}
 
 	removeOne(id, state) {
-		delete state.entities[id];
+		const newState = cloneDeep(state);
 
-		state.ids = state.ids.filter(_id => _id !== id);
+		delete newState.entities[id];
 
-		return { ...state }
+		newState.ids = newState.ids.filter(_id => _id !== id);
+
+		return newState;
 	}
 
 	removeAll(state) {
-		state.ids = [];
-		state.entities = {};
+		const newState = cloneDeep(state);
 
-		return { ...state }
+		newState.ids = [];
+		newState.entities = {};
+
+		return newState;
 	}
 
 	updateOne(element, state) {
-		for (const prop in state.entities[element.id]) {
-			if (state.entities[element.id].hasOwnProperty(prop) && element.changes.hasOwnProperty(prop)) {
-				state.entities[element.id][prop] = element.changes[prop];
+		const newState = cloneDeep(state);
+
+		for (const prop in newState.entities[element.id]) {
+			if (newState.entities[element.id].hasOwnProperty(prop) && element.changes.hasOwnProperty(prop)) {
+				newState.entities[element.id][prop] = element.changes[prop];
 			}
 		}
 
-		return { ...state }
+		return newState;
 	}
 
 	replaceAll(elements, state) {
-		this.removeAll(state);
-		this.addAll(elements, state);
+		let newState = cloneDeep(state);
 
-		return { ...state }
+		newState = this.removeAll(newState);
+		newState = this.addAll(elements, newState);
+
+		return newState;
 	}
 }
