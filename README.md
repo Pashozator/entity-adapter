@@ -1,5 +1,5 @@
 # entity-adapter
-JavaScript library to maintain entities. It helps you to deal with collections.
+JavaScript library to maintain entities. It helps you to deal with collections. Inspired by https://ngrx.io/guide/entity/adapter
 
 ## Public API
 
