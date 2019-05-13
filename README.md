@@ -1,49 +1,57 @@
 # entity-adapter
 JavaScript library to maintain entities. It helps you to deal with collections. Inspired by https://ngrx.io/guide/entity/adapter
 
+Works also with typescript;
+
 ## Public API
 
-- Get initial state of entity adapter, by default it returns object like `ids: [], entities: {}`.
+- EntityState<T> interface (where T is your entity type for example Product `{ id: string, name: string, description: string }`)
+```typescript
+ids: string[];
+entites: T[];
+```
+
+- Get initial state of entity adapter.
 ```javascript 
-getInitialState(): EntityAdapterState
+getInitialState(): EntityState<T>
 ```
 
 - Add one object to collection.
 ```javascript
-addOne(object: any, state: EntityAdapterState): EntityAdapterState
+addOne(element: T, state: EntityState<T>): EntityState<T>
 ```
 
 - Add array of objects to collection.
 ```javascript
-addAll(objects: any[], state: EntityAdapterState): EntityAdapterState
+addAll(elements: T[], state: EntityState<T>): EntityState<T>
 ```
 
 - Update one object from collection.
 ```javascript
-updateOne(object: any, state: EntityAdapterState): EntityAdapterState
+updateOne(element: T, state: EntityState<T>): EntityState<T>
 ```
 
 - Remove one object from collection.
 ```javascript
-removeOne(id: string, state: EntityAdapterState): EntityAdapterState
+removeOne(id: string, state: EntityState<T>): EntityState<T>
 ```
 
 - Remove all objects from collection.
 ```javascript
-removeAll(state: EntityAdapterState): EntityAdapterState
+removeAll(state: EntityState<T>): EntityState<T>
 ```
 
 - Replace all objects from collection with new objects.
 ```javascript
-replaceAll(objects: any[], state: EntityAdapterState): EntityAdapterState
+replaceAll(elements: T[], state: EntityState<T>): EntityState<T>
 ```
 
 - Get one element from collection.
 ```javascript
-getOne(id: string, state: EntityAdapterState): EntityAdapterState
+getOne(id: string, state: EntityState<T>): EntityState<T>
 ```
 
 - Get all elements from collection.
 ```javascript
-getAll(state: EntityAdapterState): EntityAdapterState
+getAll(state: EntityState<T>): EntityState<T>
 ```

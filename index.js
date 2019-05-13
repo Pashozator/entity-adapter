@@ -1,11 +1,18 @@
 import { cloneDeep } from 'lodash';
 
+/**
+ * Class to manipulate entities
+ */
 export class EntityAdapter {
 	constructor() {
 		this.ids = [];
 		this.entities = {};
 	}
 
+	/**
+	 * Get initial state
+	 * @returns {{entities: ({}|*), ids: Array}}
+	 */
 	getInitialState() {
 		return {
 			ids: this.ids,
@@ -13,14 +20,31 @@ export class EntityAdapter {
 		}
 	}
 
+	/**
+	 * Get one entity
+	 * @param id
+	 * @param state
+	 * @returns {*|T}
+	 */
 	getOne(id, state) {
 		return state.entities[id];
 	}
 
+	/**
+	 * Get all entities
+	 * @param state
+	 * @returns {(*|T)[]}
+	 */
 	getAll(state) {
 		return Object.keys(state.entities).map(key => state.entities[key]);
 	}
 
+	/**
+	 * Add one entity
+	 * @param element
+	 * @param state
+	 * @returns {*}
+	 */
 	addOne(element, state) {
 		const newState = cloneDeep(state);
 
@@ -30,6 +54,12 @@ export class EntityAdapter {
 		return newState;
 	}
 
+	/**
+	 * Add multiple entities
+	 * @param elements
+	 * @param state
+	 * @returns {*}
+	 */
 	addAll(elements, state) {
 		let newState = cloneDeep(state);
 
@@ -40,6 +70,12 @@ export class EntityAdapter {
 		return newState;
 	}
 
+	/**
+	 * Remove one entity
+	 * @param id
+	 * @param state
+	 * @returns {*}
+	 */
 	removeOne(id, state) {
 		const newState = cloneDeep(state);
 
@@ -50,6 +86,11 @@ export class EntityAdapter {
 		return newState;
 	}
 
+	/**
+	 * Remove all entities
+	 * @param state
+	 * @returns {*}
+	 */
 	removeAll(state) {
 		const newState = cloneDeep(state);
 
@@ -59,6 +100,12 @@ export class EntityAdapter {
 		return newState;
 	}
 
+	/**
+	 * Update one entity
+	 * @param element
+	 * @param state
+	 * @returns {*}
+	 */
 	updateOne(element, state) {
 		const newState = cloneDeep(state);
 
@@ -71,6 +118,12 @@ export class EntityAdapter {
 		return newState;
 	}
 
+	/**
+	 * Replace all entities
+	 * @param elements
+	 * @param state
+	 * @returns {*}
+	 */
 	replaceAll(elements, state) {
 		let newState = cloneDeep(state);
 
