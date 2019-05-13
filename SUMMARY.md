@@ -1,7 +1,8 @@
 # Table of contents
 
-* [Entity adapter](README.md)
+* [Introduction](README.md)
 * [Motivation](motivation.md)
+* [Getting started](getting-started.md)
 
 ## Public API
 
